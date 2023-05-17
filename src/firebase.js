@@ -2,7 +2,7 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
  import { query, orderBy, where, collection, onSnapshot, Timestamp, getFirestore } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
- import { firebaseConfig } from "./key";
+
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,8 +10,9 @@
  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 
+ 
  // Initialize Firebase
- const app = initializeApp(firebaseConfig);
+ const app = initializeApp(window.firebaseConfig);
  const analytics = getAnalytics(app);
  const db = getFirestore(app)
 
@@ -37,9 +38,6 @@
   const audio = new Audio('audio.mp3')
 
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      setTimeout(() => {
-        audio.play();
-      }, 100);
     
     productosList.innerHTML = ''
     const ordenes = []
@@ -48,7 +46,13 @@
       ordenes.push({productos: orden.productos})
     })
     ordenes.map(orden => {
-      orden.productos.map(producto => productosList.innerHTML += `<li class='producto'>${producto.nombre} <span>cantidad: ${producto.cantidad}</span></li>`)
+      if(ordenes){
+        setTimeout(() => {
+          audio.play();
+        }, 100);
+        orden.productos.map(producto => productosList.innerHTML += `<li class='producto'>${producto.nombre} <span>cantidad: ${producto.cantidad}</span></li>`)
+
+      }
     })
   })
 
