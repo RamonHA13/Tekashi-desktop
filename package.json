@@ -1,0 +1,21 @@
+{
+  "name": "tekashi-roll-desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:nodemon": "nodemon --watch main.js --exec npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^24.3.0",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "firebase": "^9.19.1"
+  }
+}
